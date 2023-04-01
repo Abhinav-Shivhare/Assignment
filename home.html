@@ -1,0 +1,1198 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      /* Create two equal columns that floats next to each other */
+      .column {
+        float: left;
+        width: 20%;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
+      }
+      .column1 {
+        float: left;
+        width: 80%;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
+      }
+      
+      </style>
+</head>
+<body>
+
+  <div class="row">
+    <div class="column">
+      <nav class="rvm-v1 rvm-v1-main-nav-ctnr" id="sidebar" sidebar="">
+        <div id="dismiss-mobile" sidebar-closer="" onclick="clsoeSideNav()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" enable-background="new 0 0 40 40">
+            <line x1="5" y1="5" x2="35" y2="35" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10"></line>
+            <line x1="35" y1="5" x2="5" y2="35" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-miterlimit="10"></line>
+          </svg>
+          <!-- <img src="https://cdn.pegasus.imarticus.org/images/close_icon.svg" class="cancel" ng-click="showSidebar = false" style="stroke: 1px white;"> -->
+        </div>
+        <div class="rvm-v1-sidebar-logo-ctnr center-all">
+          <img ng-click="redirectToDashboard()" ng-show="isLoadingImg == false" ng-src="https://cdn.pegasus.imarticus.org/images/imarticus-new-logo.svg" alt="Imarticus" role="button" tabindex="0" src="https://cdn.pegasus.imarticus.org/images/imarticus-new-logo.svg" aria-hidden="false" class="" style="">
+        </div>
+        <ul class="rvm-v1-sidebar-item-ctnr">
+          <!-- <div ng-click="redirectTo(1)">
+            <li class="rvm-v1-sidebar-item center-all">
+              <div class="width-100">
+                <i class="fa fa-chevron-left"></i>
+                Back
+              </div>
+            </li>
+          </div> -->
+          <a ng-click="redirectTo(3)" tabindex="0">
+            <li class="rvm-v1-sidebar-item active center-all">
+              <div class="width-100">Course</div>
+            </li>
+          </a>
+          <div ng-click="redirectTo(2)" role="button" tabindex="0">
+            <li class="rvm-v1-sidebar-item center-all">
+              <div class="width-100">Discussion</div>
+            </li>
+          </div>
+          <a href="#/gradebook/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383" ng-show="!hide_gradebook" ng-click="hideFreshDesk()" tabindex="0" aria-hidden="true" class="ng-hide">
+            <li class="rvm-v1-sidebar-item center-all">
+              <div class="width-100">Gradebook</div>
+            </li>
+          </a>
+        </ul>
+        <button class="impartus-button ng-hide" ng-show="impartusEnabled" ng-click="impartusLogin()" tabindex="0" aria-hidden="true">
+          <img class="recording-icon-image" src="images/new/recording-icon.svg">
+          Class Recordings
+        </button>
+        <!-- ngIf: !brand || (brand && brand.getHelpEnabled) --><div class="side-bar-freshdesk-container ng-scope" ng-if="!brand || (brand &amp;&amp; brand.getHelpEnabled)">
+          <p class="side-bar-freshdesk-heading">Facing problems?</p>
+          <button class="side-bar-freshdesk-button" ng-click="showFreshDesk()" tabindex="0">
+            Get help
+          </button>
+        </div><!-- end ngIf: !brand || (brand && brand.getHelpEnabled) -->
+      </nav>
+    </div>
+
+
+  
+   <div class="column1">
+    <div class="rvm-v1-header-pc-itm-ctnr">
+      <div class="rvm-v1-header-pc-itm-ctnr-1">
+        <span class="rvm-v1-header-brdsc-active ng-binding">Introduction to Machine Learning</span>
+        <div class="profile-btns" ng-show="profileName" aria-hidden="false" style="">
+          <ul class="navbar-right-top">
+            <!-- ngIf: !brand || (brand && brand.getHelpEnabled) --><li class="nav-item header-get-help-container ng-scope" ng-if="!brand || (brand &amp;&amp; brand.getHelpEnabled)">
+              <button class="header-get-help" ng-click="showFreshDesk()" tabindex="0">
+                <img src="images/Support.svg">
+                <span class="header-get-help-text">Get help</span>
+              </button>
+            </li><!-- end ngIf: !brand || (brand && brand.getHelpEnabled) -->
+            <li class="nav-item dropdown profileDropDownButton" ng-click="toggleProfileDropDown()" role="button" tabindex="0">
+              <button class="profile-pic" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img alt="user" class="profile-img" src="https://cdn.eckovation.com/images/Profile-01.svg">
+                <span class="profile-dropdown-menu-profile-name ng-binding">Abhainav Shivhare <img src="images/downarrow.png"></span>
+              </button>
+  
+              <div class="profile-dropdown-menu ng-hide" ng-show="profileDropDownVisible" aria-hidden="true">
+                <!-- ngIf: !brand || (brand && brand.editProfileEnabled) --><a href="https://pegasus.imarticus.org/dashboard/edit" ng-if="!brand || (brand &amp;&amp; brand.editProfileEnabled)" class="profile-dropdown-list-item text-none ng-scope">Edit Profile</a><!-- end ngIf: !brand || (brand && brand.editProfileEnabled) -->
+                <a href="https://pegasus.imarticus.org/payments/applications" class="profile-dropdown-list-item text-none">My Applications</a>
+                <a href="https://pegasus.imarticus.org/payments/transactions" class="profile-dropdown-list-item text-none">My Transactions</a>
+                <span class="profile-dropdown-list-item" ng-click="logOut()" role="button" tabindex="0">Logout
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <div class="rvm-v1-header-usr-ctnr">
+          <div class="rvm-v1-header-usr-img-ctnr">
+            <img src="https://cdn.eckovation.com/images/Machine-Learning.png"/>
+          </div>
+        </div> -->
+      <div class="width-100 center rvm-v1-header-mbl-menu-icn-ctnr">
+        <img class="rvm-v1-header-mbl-menu-icn" src="http://cdn.eckovation.com/homepage/homepagesidebaricon.svg" onclick="openSideNav()">
+        <img ng-click="redirectToDashboard()" class="rvm-v1-header-mbl-img" ng-show="isLoadingImg == false" src="https://cdn.pegasus.imarticus.org/images/imarticus-new-logo-green.svg" role="button" tabindex="0" aria-hidden="false" style="">
+        <div class="profile-btns" ng-show="profileName" aria-hidden="false" style="">
+          <ul class="navbar-right-top">
+            <!-- ngIf: !brand || (brand && brand.getHelpEnabled) --><li class="nav-item header-get-help-container ng-scope" ng-if="!brand || (brand &amp;&amp; brand.getHelpEnabled)">
+              <button class="header-get-help" ng-click="showFreshDesk()" tabindex="0">
+                <img src="images/Support.svg">
+                <span class="header-get-help-text">Get help</span>
+              </button>
+            </li><!-- end ngIf: !brand || (brand && brand.getHelpEnabled) -->
+            <li class="nav-item dropdown profileDropDownButton" ng-click="toggleProfileDropDown()" role="button" tabindex="0">
+              <button class="profile-pic" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img alt="user" class="profile-img" src="https://cdn.eckovation.com/images/Profile-01.svg">
+                <span class="profile-dropdown-menu-profile-name ng-binding">Abhinav Shivhare <img src="images/downarrow.png"></span>
+              </button>
+  
+              <div class="profile-dropdown-menu ng-hide" ng-show="profileDropDownVisible" aria-hidden="true">
+                <!-- ngIf: !brand || (brand && brand.editProfileEnabled) --><a href="https://pegasus.imarticus.org/dashboard/edit" ng-if="!brand || (brand &amp;&amp; brand.editProfileEnabled)" class="profile-dropdown-list-item text-none ng-scope">Edit Profile</a><!-- end ngIf: !brand || (brand && brand.editProfileEnabled) -->
+                <a href="https://pegasus.imarticus.org/payments/applications" class="profile-dropdown-list-item text-none">My Applications</a>
+                <a href="https://pegasus.imarticus.org/payments/transactions" class="profile-dropdown-list-item text-none">My Transactions</a>
+                <span class="profile-dropdown-list-item" ng-click="logOut()" role="button" tabindex="0">Logout
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+   
+    <div class="breadCrumbsContainer">
+        <!-- ngIf: breadCrumbs.length > 0 --><div class="rvm-v1-header-brdsc-ctnr breadCrumbs-row ng-scope" ng-if="breadCrumbs.length > 0" style="">
+          <!-- ngRepeat: entry in breadCrumbs --><div class="breadCrumbs ng-scope" ng-repeat="entry in breadCrumbs">
+            <!-- ngIf: (breadCrumbs.indexOf(entry)==0) --><a ng-if="(breadCrumbs.indexOf(entry)==0)" href="https://pegasus.imarticus.org/dashboard" class="ng-scope">
+              <span class="ng-binding">All Courses</span>
+            </a><!-- end ngIf: (breadCrumbs.indexOf(entry)==0) -->
+            <!-- ngIf: (breadCrumbs.indexOf(entry)==0) --><span ng-if="(breadCrumbs.indexOf(entry)==0)" class="ng-scope">
+              <i class="fa fa-chevron-right"></i>
+            </span><!-- end ngIf: (breadCrumbs.indexOf(entry)==0) -->
+            <!-- ngIf: (breadCrumbs.indexOf(entry)==1) -->
+            <!-- href="{{my_course_url+ '?cid='+cid}}" -->
+            <!-- ngIf: entry._id && !entry.chap -->
+            <!-- ngIf: entry._id && !entry.chap && (breadCrumbs.indexOf(entry)<(breadCrumbs.length-1)) -->
+            <!-- ngIf: entry._id && !entry.chap && (breadCrumbs.indexOf(entry)==(breadCrumbs.length-1)) -->
+          </div><!-- end ngRepeat: entry in breadCrumbs --><div class="breadCrumbs ng-scope" ng-repeat="entry in breadCrumbs">
+            <!-- ngIf: (breadCrumbs.indexOf(entry)==0) -->
+            <!-- ngIf: (breadCrumbs.indexOf(entry)==0) -->
+            <!-- ngIf: (breadCrumbs.indexOf(entry)==1) --><a ng-if="(breadCrumbs.indexOf(entry)==1)" ng-click="redirectTo(4)" class="ng-scope" tabindex="0"><span class="ng-binding">Introduction to Machine Learning</span></a><!-- end ngIf: (breadCrumbs.indexOf(entry)==1) -->
+            <!-- href="{{my_course_url+ '?cid='+cid}}" -->
+            <!-- ngIf: entry._id && !entry.chap -->
+            <!-- ngIf: entry._id && !entry.chap && (breadCrumbs.indexOf(entry)<(breadCrumbs.length-1)) -->
+            <!-- ngIf: entry._id && !entry.chap && (breadCrumbs.indexOf(entry)==(breadCrumbs.length-1)) -->
+          </div><!-- end ngRepeat: entry in breadCrumbs -->
+        </div><!-- end ngIf: breadCrumbs.length > 0 -->
+      </div>
+      <div class="rvm-v1-cont-ctnr">
+      <div class="row no-margin">
+        <div class="col-sm-12 rvm-v1-crs-info-ctnr no-padding">
+          <div class="width-100">
+            <div class="row no-margin">
+              <div class="col-sm-4 col-md-3 col-lg-3 rvm-v1-crs-img-ctnr">
+                <div class="rvm-v1-crs-img" style="background: url(https://cdn.eckovation.com/images/Introduction-to-Machine-Learning.png) center center / cover;"></div>
+              </div>
+              <div class="col-sm-8 col-md-9 col-lg-9 rvm-v1-crs-meta-ctnr">
+                <div class="batchNumber width-100">
+                  <div ng-show="course.course_name" class="rvm-v1-crs-nm two-line-ellipsis ng-binding" aria-hidden="false" style="">
+                    Introduction to Machine Learning
+                  </div>
+                  <!-- ngIf: batchName --><div class="batchNumberText ng-binding ng-scope" uib-popover="Default_Batch_1625571974257_Introduction to Machine Learning" container="body" popover-trigger="mouseenter" ng-if="batchName" style="">
+                    Batch: Default_Batch_1625571974257_Introduction to Machine Learning
+                  </div><!-- end ngIf: batchName -->
+                </div>
+                <div class="with-100 rvm-crs-perc ng-binding">0% Complete</div>
+                <!-- ngIf: resumeChapId -->
+              </div>
+            </div>
+          </div>
+
+          <div class="main grey-bg no-padding">
+            <div class="row no-margin">
+              <div class="chapters no-padding">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                  <!-- ngRepeat: chapter in (trxn_typ_emi ? course.all_chapters : course.chapters) --><div ng-repeat="chapter in (trxn_typ_emi ? course.all_chapters : course.chapters)" class="panel panel-default ng-scope" style="">
+                    <div ng-class="trxn_typ_emi &amp;&amp; hide_course_content &amp;&amp; ($index >= no_of_visible_chapters) ? 'panel-heading disable-chptr-content': 'panel-heading'" ng-click="updateChapterStatusAndToggle(chapter, $index+1)" role="tab" style="background-color: white" tabindex="0" class="panel-heading">
+                      <h4 class="panel-title ng-binding">1. Introduction to Machine Learning</h4>
+                      <p>
+                        <!-- ngIf: chapter.lec.length > 0 --><span ng-if="chapter.lec.length > 0 " class="ng-binding ng-scope">
+                          1 Lecture
+                          <!-- ngIf: chapter.scorm.length > 0 || chapter.asgn.length > 0 || chapter.quiz.length > 0 || live_lectures[chapter._id].length > 0 || chapter.doc_lec.length > 0 -->
+                        </span><!-- end ngIf: chapter.lec.length > 0 -->
+
+                        <!-- ngIf: chapter.quiz.length > 0 -->
+                        <!-- ngIf: chapter.asgn.length > 0 -->
+                        <!-- ngIf: chapter.scorm.length > 0 -->
+                        <!-- ngIf: live_lectures[chapter._id].length > 0 -->
+                        <!-- ngIf: chapter.doc_lec.length > 0 -->
+                        <!-- ngIf: chapter.feedback && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                      </p>
+                      <!-- ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) --><div ng-if="(!trxn_typ_emi || $index < no_of_visible_chapters)" class="rvm-v1-chap-arc arc ng-scope">
+                        <!-- <progress-arc
+                              size="20"
+                              stroke="#5386c5"
+                              stop-stroke = "#ec4e4e"
+                              stop-complete = "0"
+                              stroke-width="2.5"
+                              complete="(status.cperc[chapter._id] || 0)/100"
+                              background="#eee"
+                              counter-clockwise="false">
+                            </progress-arc> -->
+                        <!-- Completed -->
+                        <!-- ngIf: (((status.cperc[chapter._id] || 0)) >= 100) -->
+                        <!-- ngIf: chapter.isCollapsed -->
+
+                        <!-- ngIf: !chapter.isCollapsed --><div class="rvm-v1-chap-icn-ctnr ng-scope" ng-if="!chapter.isCollapsed">
+                          <i class="rvm-v1-chap-icn icon ion-ios-plus-outline"></i>
+                        </div><!-- end ngIf: !chapter.isCollapsed -->
+                      </div><!-- end ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) -->
+                      <!-- ngIf: trxn_typ_emi && hide_course_content && ($index >= no_of_visible_chapters) -->
+                    </div>
+                    <div class="panel-collapse collapse" uib-collapse="!chapter.isCollapsed" style="height: 0px;">
+                      <div class="panel-body">
+                        <!-- <div class="rvm-v1-chap-liv-lec-ul-ctnr">
+                              <ul class="rvm-v1-chap-list-ul rvm-v1-chap-liv-lec-ul" ng-repeat="livlec in live_lectures[chapter._id]">
+                                <li class="rvm-v1-chap-liv-lec-li">
+                                  <div class="width-100 rvm-v1-chap-liv-lec-ctnr">
+
+                                    <div class="rvm-v1-chap-liv-lec-logo">
+                                      <div class="rvm-v1-chap-liv-lec-logo-fltr center-all">
+                                        <i class="fa fa-play-circle"></i>
+                                      </div>
+                                    </div>
+
+                                    <div class="rvm-v1-chap-liv-lec-det-ctnr">
+                                      
+                                      <div class="rvm-v1-chap-liv-lec-det-intr-ctnr">
+                                        <span>{{$index + 1}}. {{livlec.nm}}</span>
+                                        <span class="rvm-v1-chap-liv-lec-det-intr-icon-ctnr" ng-if="livlec.live_status == 1">
+                                          <i class="fa fa-lock"></i>
+                                        </span>
+                                      </div>
+
+                                      <div class="rvm-v1-chap-liv-lec-det-2-ctnr width-100">
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Status:&nbsp;</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 1">Scheduled</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 2">Ongoing Live Session</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3">Was Live</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Start:&nbsp;</span>
+                                          <span>{{livlec.lcdt}}&nbsp;{{livlec.lctm}}</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>End:&nbsp;</span>
+                                          <span>{{livlec.lcedt}}&nbsp;{{livlec.lcetm}}</span>
+
+                                          <div class="status" style="margin: auto 1rem auto auto;" ng-if="course.status[livlec._id ].stts == 4"> 
+                                            <div class="s-circle complete" ng-if="course.status[livlec._id ].stts == 4" >
+                                              <i class="icon ion-ios-checkmark-empty"></i>
+                                            </div>
+                                          </div>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 2) && livlec.url.trim().length">
+                                            <a href="" ng-click="joinZoomMeeting(livlec._id)" target="__blank">Join<i class="fa fa-chevron-right"></i></a>
+                                          </span>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 3) && livlec.recurl">
+                                            <a ui-sref="chapter.lecture({
+                                              pid : pid,
+                                              gid : gid,
+                                              cid : cid,
+                                              chid : livlec.chpid,
+                                              topic : livlec._id,
+                                              skptm : 0,
+
+                                            })">
+                                            View<i class="fa fa-chevron-right"></i>
+                                            </a>
+                                          </span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && livlec.recurl">Recording Available</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && !livlec.recurl">Recording Under Process</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div> -->
+
+                        <!-- ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5467465ba0e17a578548f/60e5477065ba0e17a578554a/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  1.
+                                  What is Machine Learning?
+                                  <span style="float: right" class="ng-binding">04:21
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] -->
+
+                        <!-- <ul
+                          class="rvm-v1-chap-list-ul"
+                          ng-repeat="topic in course.sequence[chapter._id]"
+                        > -->
+                        <ul class="rvm-v1-chap-list-ul">
+                          <!-- ngIf: chapter.feedback && chapter.feedbackObj && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                        </ul>
+                      </div>
+                      <div class="download-btns backcolor"></div>
+                    </div>
+                  </div><!-- end ngRepeat: chapter in (trxn_typ_emi ? course.all_chapters : course.chapters) --><div ng-repeat="chapter in (trxn_typ_emi ? course.all_chapters : course.chapters)" class="panel panel-default ng-scope">
+                    <div ng-class="trxn_typ_emi &amp;&amp; hide_course_content &amp;&amp; ($index >= no_of_visible_chapters) ? 'panel-heading disable-chptr-content': 'panel-heading'" ng-click="updateChapterStatusAndToggle(chapter, $index+1)" role="tab" style="background-color: white" tabindex="0" class="panel-heading">
+                      <h4 class="panel-title ng-binding">2. Concepts of Machine Learning</h4>
+                      <p>
+                        <!-- ngIf: chapter.lec.length > 0 --><span ng-if="chapter.lec.length > 0 " class="ng-binding ng-scope">
+                          3 Lectures
+                          <!-- ngIf: chapter.scorm.length > 0 || chapter.asgn.length > 0 || chapter.quiz.length > 0 || live_lectures[chapter._id].length > 0 || chapter.doc_lec.length > 0 --><span ng-if="chapter.scorm.length > 0 || chapter.asgn.length > 0 || chapter.quiz.length > 0 || live_lectures[chapter._id].length > 0 || chapter.doc_lec.length > 0 " class="ng-scope">,</span><!-- end ngIf: chapter.scorm.length > 0 || chapter.asgn.length > 0 || chapter.quiz.length > 0 || live_lectures[chapter._id].length > 0 || chapter.doc_lec.length > 0 -->
+                        </span><!-- end ngIf: chapter.lec.length > 0 -->
+
+                        <!-- ngIf: chapter.quiz.length > 0 --><span ng-if="chapter.quiz.length > 0 " class="ng-binding ng-scope">
+                          1 Quiz
+                          <!-- ngIf: chapter.scorm.length > 0 || chapter.asgn.length > 0 || live_lectures[chapter._id].length > 0 || chapter.doc_lec.length > 0 -->
+                        </span><!-- end ngIf: chapter.quiz.length > 0 -->
+                        <!-- ngIf: chapter.asgn.length > 0 -->
+                        <!-- ngIf: chapter.scorm.length > 0 -->
+                        <!-- ngIf: live_lectures[chapter._id].length > 0 -->
+                        <!-- ngIf: chapter.doc_lec.length > 0 -->
+                        <!-- ngIf: chapter.feedback && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                      </p>
+                      <!-- ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) --><div ng-if="(!trxn_typ_emi || $index < no_of_visible_chapters)" class="rvm-v1-chap-arc arc ng-scope">
+                        <!-- <progress-arc
+                              size="20"
+                              stroke="#5386c5"
+                              stop-stroke = "#ec4e4e"
+                              stop-complete = "0"
+                              stroke-width="2.5"
+                              complete="(status.cperc[chapter._id] || 0)/100"
+                              background="#eee"
+                              counter-clockwise="false">
+                            </progress-arc> -->
+                        <!-- Completed -->
+                        <!-- ngIf: (((status.cperc[chapter._id] || 0)) >= 100) -->
+                        <!-- ngIf: chapter.isCollapsed -->
+
+                        <!-- ngIf: !chapter.isCollapsed --><div class="rvm-v1-chap-icn-ctnr ng-scope" ng-if="!chapter.isCollapsed">
+                          <i class="rvm-v1-chap-icn icon ion-ios-plus-outline"></i>
+                        </div><!-- end ngIf: !chapter.isCollapsed -->
+                      </div><!-- end ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) -->
+                      <!-- ngIf: trxn_typ_emi && hide_course_content && ($index >= no_of_visible_chapters) -->
+                    </div>
+                    <div class="panel-collapse collapse" uib-collapse="!chapter.isCollapsed" style="height: 0px;">
+                      <div class="panel-body">
+                        <!-- <div class="rvm-v1-chap-liv-lec-ul-ctnr">
+                              <ul class="rvm-v1-chap-list-ul rvm-v1-chap-liv-lec-ul" ng-repeat="livlec in live_lectures[chapter._id]">
+                                <li class="rvm-v1-chap-liv-lec-li">
+                                  <div class="width-100 rvm-v1-chap-liv-lec-ctnr">
+
+                                    <div class="rvm-v1-chap-liv-lec-logo">
+                                      <div class="rvm-v1-chap-liv-lec-logo-fltr center-all">
+                                        <i class="fa fa-play-circle"></i>
+                                      </div>
+                                    </div>
+
+                                    <div class="rvm-v1-chap-liv-lec-det-ctnr">
+                                      
+                                      <div class="rvm-v1-chap-liv-lec-det-intr-ctnr">
+                                        <span>{{$index + 1}}. {{livlec.nm}}</span>
+                                        <span class="rvm-v1-chap-liv-lec-det-intr-icon-ctnr" ng-if="livlec.live_status == 1">
+                                          <i class="fa fa-lock"></i>
+                                        </span>
+                                      </div>
+
+                                      <div class="rvm-v1-chap-liv-lec-det-2-ctnr width-100">
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Status:&nbsp;</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 1">Scheduled</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 2">Ongoing Live Session</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3">Was Live</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Start:&nbsp;</span>
+                                          <span>{{livlec.lcdt}}&nbsp;{{livlec.lctm}}</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>End:&nbsp;</span>
+                                          <span>{{livlec.lcedt}}&nbsp;{{livlec.lcetm}}</span>
+
+                                          <div class="status" style="margin: auto 1rem auto auto;" ng-if="course.status[livlec._id ].stts == 4"> 
+                                            <div class="s-circle complete" ng-if="course.status[livlec._id ].stts == 4" >
+                                              <i class="icon ion-ios-checkmark-empty"></i>
+                                            </div>
+                                          </div>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 2) && livlec.url.trim().length">
+                                            <a href="" ng-click="joinZoomMeeting(livlec._id)" target="__blank">Join<i class="fa fa-chevron-right"></i></a>
+                                          </span>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 3) && livlec.recurl">
+                                            <a ui-sref="chapter.lecture({
+                                              pid : pid,
+                                              gid : gid,
+                                              cid : cid,
+                                              chid : livlec.chpid,
+                                              topic : livlec._id,
+                                              skptm : 0,
+
+                                            })">
+                                            View<i class="fa fa-chevron-right"></i>
+                                            </a>
+                                          </span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && livlec.recurl">Recording Available</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && !livlec.recurl">Recording Under Process</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div> -->
+
+                        <!-- ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5f88965ba0e17a5785b5a/60e5f8bd65ba0e17a5785bcb/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  1.
+                                  Rent Cost of Flat
+                                  <span style="float: right" class="ng-binding">03:27
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5f88965ba0e17a5785b5a/60e5fbe265ba0e17a5785c12/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  2.
+                                  Linear Regression
+                                  <span style="float: right" class="ng-binding">04:47
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5f88965ba0e17a5785b5a/60e5fc3e65ba0e17a5785c85/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  3.
+                                  Polymer Regression
+                                  <span style="float: right" class="ng-binding">04:15
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 3 || topic.type == 4">
+                            <div class="title">
+                              <a ui-sref="chapter.quiz({
+                                        pid : pid,
+                                        gid : gid,
+                                        cid : cid,
+                                        levelId: levelId,
+                                        chid : chapter._id,
+                                        topic : topic.fid
+                                      })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/quiz/60e5f88965ba0e17a5785b5a/60e5fc5065ba0e17a5785caf">
+                                <p class="ng-binding">
+                                  <img src="images/quiz.svg" class="icon quiz">4.
+                                  Basics of Machine Learning
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] -->
+
+                        <!-- <ul
+                          class="rvm-v1-chap-list-ul"
+                          ng-repeat="topic in course.sequence[chapter._id]"
+                        > -->
+                        <ul class="rvm-v1-chap-list-ul">
+                          <!-- ngIf: chapter.feedback && chapter.feedbackObj && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                        </ul>
+                      </div>
+                      <div class="download-btns backcolor"></div>
+                    </div>
+                  </div><!-- end ngRepeat: chapter in (trxn_typ_emi ? course.all_chapters : course.chapters) --><div ng-repeat="chapter in (trxn_typ_emi ? course.all_chapters : course.chapters)" class="panel panel-default ng-scope">
+                    <div ng-class="trxn_typ_emi &amp;&amp; hide_course_content &amp;&amp; ($index >= no_of_visible_chapters) ? 'panel-heading disable-chptr-content': 'panel-heading'" ng-click="updateChapterStatusAndToggle(chapter, $index+1)" role="tab" style="background-color: white" tabindex="0" class="panel-heading">
+                      <h4 class="panel-title ng-binding">3. Application of Machine Learning</h4>
+                      <p>
+                        <!-- ngIf: chapter.lec.length > 0 --><span ng-if="chapter.lec.length > 0 " class="ng-binding ng-scope">
+                          2 Lectures
+                          <!-- ngIf: chapter.scorm.length > 0 || chapter.asgn.length > 0 || chapter.quiz.length > 0 || live_lectures[chapter._id].length > 0 || chapter.doc_lec.length > 0 -->
+                        </span><!-- end ngIf: chapter.lec.length > 0 -->
+
+                        <!-- ngIf: chapter.quiz.length > 0 -->
+                        <!-- ngIf: chapter.asgn.length > 0 -->
+                        <!-- ngIf: chapter.scorm.length > 0 -->
+                        <!-- ngIf: live_lectures[chapter._id].length > 0 -->
+                        <!-- ngIf: chapter.doc_lec.length > 0 -->
+                        <!-- ngIf: chapter.feedback && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                      </p>
+                      <!-- ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) --><div ng-if="(!trxn_typ_emi || $index < no_of_visible_chapters)" class="rvm-v1-chap-arc arc ng-scope">
+                        <!-- <progress-arc
+                              size="20"
+                              stroke="#5386c5"
+                              stop-stroke = "#ec4e4e"
+                              stop-complete = "0"
+                              stroke-width="2.5"
+                              complete="(status.cperc[chapter._id] || 0)/100"
+                              background="#eee"
+                              counter-clockwise="false">
+                            </progress-arc> -->
+                        <!-- Completed -->
+                        <!-- ngIf: (((status.cperc[chapter._id] || 0)) >= 100) -->
+                        <!-- ngIf: chapter.isCollapsed -->
+
+                        <!-- ngIf: !chapter.isCollapsed --><div class="rvm-v1-chap-icn-ctnr ng-scope" ng-if="!chapter.isCollapsed">
+                          <i class="rvm-v1-chap-icn icon ion-ios-plus-outline"></i>
+                        </div><!-- end ngIf: !chapter.isCollapsed -->
+                      </div><!-- end ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) -->
+                      <!-- ngIf: trxn_typ_emi && hide_course_content && ($index >= no_of_visible_chapters) -->
+                    </div>
+                    <div class="panel-collapse collapse" uib-collapse="!chapter.isCollapsed" style="height: 0px;">
+                      <div class="panel-body">
+                        <!-- <div class="rvm-v1-chap-liv-lec-ul-ctnr">
+                              <ul class="rvm-v1-chap-list-ul rvm-v1-chap-liv-lec-ul" ng-repeat="livlec in live_lectures[chapter._id]">
+                                <li class="rvm-v1-chap-liv-lec-li">
+                                  <div class="width-100 rvm-v1-chap-liv-lec-ctnr">
+
+                                    <div class="rvm-v1-chap-liv-lec-logo">
+                                      <div class="rvm-v1-chap-liv-lec-logo-fltr center-all">
+                                        <i class="fa fa-play-circle"></i>
+                                      </div>
+                                    </div>
+
+                                    <div class="rvm-v1-chap-liv-lec-det-ctnr">
+                                      
+                                      <div class="rvm-v1-chap-liv-lec-det-intr-ctnr">
+                                        <span>{{$index + 1}}. {{livlec.nm}}</span>
+                                        <span class="rvm-v1-chap-liv-lec-det-intr-icon-ctnr" ng-if="livlec.live_status == 1">
+                                          <i class="fa fa-lock"></i>
+                                        </span>
+                                      </div>
+
+                                      <div class="rvm-v1-chap-liv-lec-det-2-ctnr width-100">
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Status:&nbsp;</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 1">Scheduled</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 2">Ongoing Live Session</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3">Was Live</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Start:&nbsp;</span>
+                                          <span>{{livlec.lcdt}}&nbsp;{{livlec.lctm}}</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>End:&nbsp;</span>
+                                          <span>{{livlec.lcedt}}&nbsp;{{livlec.lcetm}}</span>
+
+                                          <div class="status" style="margin: auto 1rem auto auto;" ng-if="course.status[livlec._id ].stts == 4"> 
+                                            <div class="s-circle complete" ng-if="course.status[livlec._id ].stts == 4" >
+                                              <i class="icon ion-ios-checkmark-empty"></i>
+                                            </div>
+                                          </div>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 2) && livlec.url.trim().length">
+                                            <a href="" ng-click="joinZoomMeeting(livlec._id)" target="__blank">Join<i class="fa fa-chevron-right"></i></a>
+                                          </span>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 3) && livlec.recurl">
+                                            <a ui-sref="chapter.lecture({
+                                              pid : pid,
+                                              gid : gid,
+                                              cid : cid,
+                                              chid : livlec.chpid,
+                                              topic : livlec._id,
+                                              skptm : 0,
+
+                                            })">
+                                            View<i class="fa fa-chevron-right"></i>
+                                            </a>
+                                          </span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && livlec.recurl">Recording Available</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && !livlec.recurl">Recording Under Process</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div> -->
+
+                        <!-- ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5fca465ba0e17a5785ccc/60e5fcd365ba0e17a5785d2c/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  1.
+                                  Spam Email Filter
+                                  <span style="float: right" class="ng-binding">06:58
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5fca465ba0e17a5785ccc/60e5fce665ba0e17a5785d4f/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  2.
+                                  Recommendation of App
+                                  <span style="float: right" class="ng-binding">07:13
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] -->
+
+                        <!-- <ul
+                          class="rvm-v1-chap-list-ul"
+                          ng-repeat="topic in course.sequence[chapter._id]"
+                        > -->
+                        <ul class="rvm-v1-chap-list-ul">
+                          <!-- ngIf: chapter.feedback && chapter.feedbackObj && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                        </ul>
+                      </div>
+                      <div class="download-btns backcolor"></div>
+                    </div>
+                  </div><!-- end ngRepeat: chapter in (trxn_typ_emi ? course.all_chapters : course.chapters) --><div ng-repeat="chapter in (trxn_typ_emi ? course.all_chapters : course.chapters)" class="panel panel-default ng-scope">
+                    <div ng-class="trxn_typ_emi &amp;&amp; hide_course_content &amp;&amp; ($index >= no_of_visible_chapters) ? 'panel-heading disable-chptr-content': 'panel-heading'" ng-click="updateChapterStatusAndToggle(chapter, $index+1)" role="tab" style="background-color: white" tabindex="0" class="panel-heading">
+                      <h4 class="panel-title ng-binding">4. Neural Network and Deep Learning</h4>
+                      <p>
+                        <!-- ngIf: chapter.lec.length > 0 --><span ng-if="chapter.lec.length > 0 " class="ng-binding ng-scope">
+                          5 Lectures
+                          <!-- ngIf: chapter.scorm.length > 0 || chapter.asgn.length > 0 || chapter.quiz.length > 0 || live_lectures[chapter._id].length > 0 || chapter.doc_lec.length > 0 -->
+                        </span><!-- end ngIf: chapter.lec.length > 0 -->
+
+                        <!-- ngIf: chapter.quiz.length > 0 -->
+                        <!-- ngIf: chapter.asgn.length > 0 -->
+                        <!-- ngIf: chapter.scorm.length > 0 -->
+                        <!-- ngIf: live_lectures[chapter._id].length > 0 -->
+                        <!-- ngIf: chapter.doc_lec.length > 0 -->
+                        <!-- ngIf: chapter.feedback && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                      </p>
+                      <!-- ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) --><div ng-if="(!trxn_typ_emi || $index < no_of_visible_chapters)" class="rvm-v1-chap-arc arc ng-scope">
+                        <!-- <progress-arc
+                              size="20"
+                              stroke="#5386c5"
+                              stop-stroke = "#ec4e4e"
+                              stop-complete = "0"
+                              stroke-width="2.5"
+                              complete="(status.cperc[chapter._id] || 0)/100"
+                              background="#eee"
+                              counter-clockwise="false">
+                            </progress-arc> -->
+                        <!-- Completed -->
+                        <!-- ngIf: (((status.cperc[chapter._id] || 0)) >= 100) -->
+                        <!-- ngIf: chapter.isCollapsed -->
+
+                        <!-- ngIf: !chapter.isCollapsed --><div class="rvm-v1-chap-icn-ctnr ng-scope" ng-if="!chapter.isCollapsed">
+                          <i class="rvm-v1-chap-icn icon ion-ios-plus-outline"></i>
+                        </div><!-- end ngIf: !chapter.isCollapsed -->
+                      </div><!-- end ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) -->
+                      <!-- ngIf: trxn_typ_emi && hide_course_content && ($index >= no_of_visible_chapters) -->
+                    </div>
+                    <div class="panel-collapse collapse" uib-collapse="!chapter.isCollapsed" style="height: 0px;">
+                      <div class="panel-body">
+                        <!-- <div class="rvm-v1-chap-liv-lec-ul-ctnr">
+                              <ul class="rvm-v1-chap-list-ul rvm-v1-chap-liv-lec-ul" ng-repeat="livlec in live_lectures[chapter._id]">
+                                <li class="rvm-v1-chap-liv-lec-li">
+                                  <div class="width-100 rvm-v1-chap-liv-lec-ctnr">
+
+                                    <div class="rvm-v1-chap-liv-lec-logo">
+                                      <div class="rvm-v1-chap-liv-lec-logo-fltr center-all">
+                                        <i class="fa fa-play-circle"></i>
+                                      </div>
+                                    </div>
+
+                                    <div class="rvm-v1-chap-liv-lec-det-ctnr">
+                                      
+                                      <div class="rvm-v1-chap-liv-lec-det-intr-ctnr">
+                                        <span>{{$index + 1}}. {{livlec.nm}}</span>
+                                        <span class="rvm-v1-chap-liv-lec-det-intr-icon-ctnr" ng-if="livlec.live_status == 1">
+                                          <i class="fa fa-lock"></i>
+                                        </span>
+                                      </div>
+
+                                      <div class="rvm-v1-chap-liv-lec-det-2-ctnr width-100">
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Status:&nbsp;</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 1">Scheduled</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 2">Ongoing Live Session</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3">Was Live</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Start:&nbsp;</span>
+                                          <span>{{livlec.lcdt}}&nbsp;{{livlec.lctm}}</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>End:&nbsp;</span>
+                                          <span>{{livlec.lcedt}}&nbsp;{{livlec.lcetm}}</span>
+
+                                          <div class="status" style="margin: auto 1rem auto auto;" ng-if="course.status[livlec._id ].stts == 4"> 
+                                            <div class="s-circle complete" ng-if="course.status[livlec._id ].stts == 4" >
+                                              <i class="icon ion-ios-checkmark-empty"></i>
+                                            </div>
+                                          </div>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 2) && livlec.url.trim().length">
+                                            <a href="" ng-click="joinZoomMeeting(livlec._id)" target="__blank">Join<i class="fa fa-chevron-right"></i></a>
+                                          </span>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 3) && livlec.recurl">
+                                            <a ui-sref="chapter.lecture({
+                                              pid : pid,
+                                              gid : gid,
+                                              cid : cid,
+                                              chid : livlec.chpid,
+                                              topic : livlec._id,
+                                              skptm : 0,
+
+                                            })">
+                                            View<i class="fa fa-chevron-right"></i>
+                                            </a>
+                                          </span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && livlec.recurl">Recording Available</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && !livlec.recurl">Recording Under Process</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div> -->
+
+                        <!-- ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5fd0e65ba0e17a5785d6c/60e5fe3465ba0e17a5785fdd/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  1.
+                                  Application of ML in College Admission
+                                  <span style="float: right" class="ng-binding">06:45
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5fd0e65ba0e17a5785d6c/60e5fe4865ba0e17a5786000/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  2.
+                                  Application of ML: College Admission II
+                                  <span style="float: right" class="ng-binding">04:47
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5fd0e65ba0e17a5785d6c/60e5fe5c65ba0e17a5786023/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  3.
+                                  Neural Network
+                                  <span style="float: right" class="ng-binding">03:34
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5fd0e65ba0e17a5785d6c/60e5fe7165ba0e17a5786046/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  4.
+                                  Recognizing Hand Written Digits I
+                                  <span style="float: right" class="ng-binding">03:02
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5fd0e65ba0e17a5785d6c/60e5fe8865ba0e17a5786069/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  5.
+                                  Recognizing Hand Written Digits II
+                                  <span style="float: right" class="ng-binding">03:43
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] -->
+
+                        <!-- <ul
+                          class="rvm-v1-chap-list-ul"
+                          ng-repeat="topic in course.sequence[chapter._id]"
+                        > -->
+                        <ul class="rvm-v1-chap-list-ul">
+                          <!-- ngIf: chapter.feedback && chapter.feedbackObj && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                        </ul>
+                      </div>
+                      <div class="download-btns backcolor"></div>
+                    </div>
+                  </div><!-- end ngRepeat: chapter in (trxn_typ_emi ? course.all_chapters : course.chapters) --><div ng-repeat="chapter in (trxn_typ_emi ? course.all_chapters : course.chapters)" class="panel panel-default ng-scope">
+                    <div ng-class="trxn_typ_emi &amp;&amp; hide_course_content &amp;&amp; ($index >= no_of_visible_chapters) ? 'panel-heading disable-chptr-content': 'panel-heading'" ng-click="updateChapterStatusAndToggle(chapter, $index+1)" role="tab" style="background-color: white" tabindex="0" class="panel-heading">
+                      <h4 class="panel-title ng-binding">5. Application of Deep Learning</h4>
+                      <p>
+                        <!-- ngIf: chapter.lec.length > 0 --><span ng-if="chapter.lec.length > 0 " class="ng-binding ng-scope">
+                          1 Lecture
+                          <!-- ngIf: chapter.scorm.length > 0 || chapter.asgn.length > 0 || chapter.quiz.length > 0 || live_lectures[chapter._id].length > 0 || chapter.doc_lec.length > 0 -->
+                        </span><!-- end ngIf: chapter.lec.length > 0 -->
+
+                        <!-- ngIf: chapter.quiz.length > 0 -->
+                        <!-- ngIf: chapter.asgn.length > 0 -->
+                        <!-- ngIf: chapter.scorm.length > 0 -->
+                        <!-- ngIf: live_lectures[chapter._id].length > 0 -->
+                        <!-- ngIf: chapter.doc_lec.length > 0 -->
+                        <!-- ngIf: chapter.feedback && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                      </p>
+                      <!-- ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) --><div ng-if="(!trxn_typ_emi || $index < no_of_visible_chapters)" class="rvm-v1-chap-arc arc ng-scope">
+                        <!-- <progress-arc
+                              size="20"
+                              stroke="#5386c5"
+                              stop-stroke = "#ec4e4e"
+                              stop-complete = "0"
+                              stroke-width="2.5"
+                              complete="(status.cperc[chapter._id] || 0)/100"
+                              background="#eee"
+                              counter-clockwise="false">
+                            </progress-arc> -->
+                        <!-- Completed -->
+                        <!-- ngIf: (((status.cperc[chapter._id] || 0)) >= 100) -->
+                        <!-- ngIf: chapter.isCollapsed -->
+
+                        <!-- ngIf: !chapter.isCollapsed --><div class="rvm-v1-chap-icn-ctnr ng-scope" ng-if="!chapter.isCollapsed">
+                          <i class="rvm-v1-chap-icn icon ion-ios-plus-outline"></i>
+                        </div><!-- end ngIf: !chapter.isCollapsed -->
+                      </div><!-- end ngIf: (!trxn_typ_emi || $index < no_of_visible_chapters) -->
+                      <!-- ngIf: trxn_typ_emi && hide_course_content && ($index >= no_of_visible_chapters) -->
+                    </div>
+                    <div class="panel-collapse collapse" uib-collapse="!chapter.isCollapsed" style="height: 0px;">
+                      <div class="panel-body">
+                        <!-- <div class="rvm-v1-chap-liv-lec-ul-ctnr">
+                              <ul class="rvm-v1-chap-list-ul rvm-v1-chap-liv-lec-ul" ng-repeat="livlec in live_lectures[chapter._id]">
+                                <li class="rvm-v1-chap-liv-lec-li">
+                                  <div class="width-100 rvm-v1-chap-liv-lec-ctnr">
+
+                                    <div class="rvm-v1-chap-liv-lec-logo">
+                                      <div class="rvm-v1-chap-liv-lec-logo-fltr center-all">
+                                        <i class="fa fa-play-circle"></i>
+                                      </div>
+                                    </div>
+
+                                    <div class="rvm-v1-chap-liv-lec-det-ctnr">
+                                      
+                                      <div class="rvm-v1-chap-liv-lec-det-intr-ctnr">
+                                        <span>{{$index + 1}}. {{livlec.nm}}</span>
+                                        <span class="rvm-v1-chap-liv-lec-det-intr-icon-ctnr" ng-if="livlec.live_status == 1">
+                                          <i class="fa fa-lock"></i>
+                                        </span>
+                                      </div>
+
+                                      <div class="rvm-v1-chap-liv-lec-det-2-ctnr width-100">
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Status:&nbsp;</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 1">Scheduled</span>
+                                          <span style="color: red;" ng-if="livlec.live_status == 2">Ongoing Live Session</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3">Was Live</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>Start:&nbsp;</span>
+                                          <span>{{livlec.lcdt}}&nbsp;{{livlec.lctm}}</span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span>End:&nbsp;</span>
+                                          <span>{{livlec.lcedt}}&nbsp;{{livlec.lcetm}}</span>
+
+                                          <div class="status" style="margin: auto 1rem auto auto;" ng-if="course.status[livlec._id ].stts == 4"> 
+                                            <div class="s-circle complete" ng-if="course.status[livlec._id ].stts == 4" >
+                                              <i class="icon ion-ios-checkmark-empty"></i>
+                                            </div>
+                                          </div>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 2) && livlec.url.trim().length">
+                                            <a href="" ng-click="joinZoomMeeting(livlec._id)" target="__blank">Join<i class="fa fa-chevron-right"></i></a>
+                                          </span>
+                                          <span class="rvm-v1-chap-liv-lec-det-join-btn"
+                                          ng-if="(livlec.live_status == 3) && livlec.recurl">
+                                            <a ui-sref="chapter.lecture({
+                                              pid : pid,
+                                              gid : gid,
+                                              cid : cid,
+                                              chid : livlec.chpid,
+                                              topic : livlec._id,
+                                              skptm : 0,
+
+                                            })">
+                                            View<i class="fa fa-chevron-right"></i>
+                                            </a>
+                                          </span>
+                                        </div>
+                                        <div class="rvm-v1-chap-liv-lec-det-2 width-100">
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && livlec.recurl">Recording Available</span>
+                                          <span style="color: #255CA8;" ng-if="livlec.live_status == 3 && !livlec.recurl">Recording Under Process</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div> -->
+
+                        <!-- ngRepeat: topic in course.sequence[chapter._id] --><ul class="rvm-v1-chap-list-ul ng-scope" ng-repeat="topic in course.sequence[chapter._id]">
+                          <!-- ngIf: topic.type == 7 -->
+                          <!-- ngIf: topic.type == 1 --><li class="rvm-v1-chap-list-li ng-scope" ng-if="topic.type == 1">
+                            <div class="title">
+                              <a ui-sref="chapter.lecture({
+                                  ch_name:chapter.nm,
+                                      pid : pid,
+                                      gid : gid,
+                                      cid : cid,
+                                      levelId: levelId,
+                                      chid : chapter._id,
+                                      topic : topic.fid,
+                                      skptm : 0,
+                                    })" href="#/chapter/6427b9a06debc234a72d0e48/60e43e4965ba0e17a578531b/60e4428665ba0e17a5785383/undefined/lecture/60e5469265ba0e17a57854d1/60e5feb665ba0e17a578608c/0">
+                                <p class="ng-binding">
+                                  <img src="images/play-button.svg" class="icon play-button">
+                                  1.
+                                  Deep Learning
+                                  <span style="float: right" class="ng-binding">05:14
+                                  </span>
+                                </p>
+                              </a>
+                            </div>
+                            <!-- ngIf: status.status[topic.fid].stts == 4 -->
+                          </li><!-- end ngIf: topic.type == 1 -->
+                          <!-- ngIf: topic.type == 8 -->
+                          <!-- ngIf: topic.type == 5 -->
+                          <!-- ngIf: topic.type == 3 || topic.type == 4 -->
+                          <!-- ngIf: topic.type == 2 || topic.type == 6 -->
+                        </ul><!-- end ngRepeat: topic in course.sequence[chapter._id] -->
+
+                        <!-- <ul
+                          class="rvm-v1-chap-list-ul"
+                          ng-repeat="topic in course.sequence[chapter._id]"
+                        > -->
+                        <ul class="rvm-v1-chap-list-ul">
+                          <!-- ngIf: chapter.feedback && chapter.feedbackObj && (batchObj.gradebook_auto_publish || chapter.feedback_publish) -->
+                        </ul>
+                      </div>
+                      <div class="download-btns backcolor"></div>
+                    </div>
+                  </div><!-- end ngRepeat: chapter in (trxn_typ_emi ? course.all_chapters : course.chapters) -->
+
+                  <!-- ngRepeat: project in course.projects -->
+
+                  <!-- EMI TRACKING -->
+                  <!-- ngIf: course.emistatus.trxn_typ_emi -->
+                  <!-- ------------ -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
